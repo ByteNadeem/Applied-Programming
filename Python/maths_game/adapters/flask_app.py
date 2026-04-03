@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
-from Python.maths_game.core.game_engine import GameEngine
-from Python.maths_game.core.operations.addition import Addition
-from Python.maths_game.core.operations.subtraction import Subtraction
-from Python.maths_game.core.operations.multiplication import Multiplication
-from Python.maths_game.core.operations.division import Division
-from Python.maths_game.core.operations.modulus import Modulus
+from ..core.game_engine import GameEngine
+from ..core.operations.addition import Addition
+from ..core.operations.subtraction import Subtraction
+from ..core.operations.multiplication import Multiplication
+from ..core.operations.division import Division
+from ..core.operations.modulus import Modulus
+
+
 
 app = Flask(__name__)
 
