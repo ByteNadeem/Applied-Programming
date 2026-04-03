@@ -162,6 +162,16 @@ body {
     background-color: darkgreen;
     color: white;
 }
+.btn--purple {
+    border-color: purple;
+    color: purple;
+}
+
+.btn--purple:active,
+.btn--purple:hover {
+    background-color: rebeccapurple;
+    color: white;
+}
 
 .btn--gray {
     margin-top: 25px;
