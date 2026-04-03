@@ -57,6 +57,23 @@
     </div>
 
     <script src="assets/js/script.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll("button");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const type = button.getAttribute("data-type");
+
+                if (type === "submit") {
+                    checkAnswer();
+                } else {
+                    loadQuestion(type);
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
