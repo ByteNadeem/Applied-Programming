@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify, render_template
 from ..core.game_engine import GameEngine
 from ..core.operations.addition import Addition
@@ -6,7 +7,11 @@ from ..core.operations.multiplication import Multiplication
 from ..core.operations.division import Division
 from ..core.operations.modulus import Modulus
 
-app = Flask(__name__)
+# Locate the templates folder one level above /adapters/
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # maths_game/
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+
+app = Flask(__name__, template_folder=TEMPLATE_DIR)
 
 # Map operation names to classes
 operations = {
