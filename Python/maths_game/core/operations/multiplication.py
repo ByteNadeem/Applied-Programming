@@ -4,3 +4,6 @@ class Multiplication:
 
     def calculate(self, a, b):
         return a * b
+
+    def symbol(self):
+        return "*"
