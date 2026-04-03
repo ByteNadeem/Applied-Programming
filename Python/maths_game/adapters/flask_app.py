@@ -14,7 +14,61 @@ operations = {
     "addition": Addition(),
     "subtract": Subtraction(),
     "multiply": Multiplication(),
+    "division": Division(),from flask import Flask, request, jsonify, render_template
+from ..core.game_engine import GameEngine
+from ..core.operations.addition import Addition
+from ..core.operations.subtraction import Subtraction
+from ..core.operations.multiplication import Multiplication
+from ..core.operations.division import Division
+from ..core.operations.modulus import Modulus
+
+app = Flask(__name__)
+
+# Map operation names to classes
+operations = {
+    "addition": Addition(),
+    "subtract": Subtraction(),
+    "multiply": Multiplication(),
     "division": Division(),
+    "modulus": Modulus()
+}
+
+# ------------------------------
+# 1. Serve the homepage
+# ------------------------------
+@app.get("/")
+def index():
+    return render_template("index.html")
+
+# ------------------------------
+# 2. Get a new question
+# ------------------------------
+@app.get("/question/<operation>")
+def question(operation):
+    if operation not in operations:
+        return jsonify({"error": "Invalid operation"}), 400
+
+    engine = GameEngine(operations[operation])
+    return jsonify(engine.new_question())
+
+# ------------------------------
+# 3. Check the user's answer
+# ------------------------------
+@app.post("/check")
+def check():
+    data = request.json
+
+    operation = data.get("operation")
+    if operation not in operations:
+        return jsonify({"error": "Invalid operation"}), 400
+
+    engine = GameEngine(operations[operation])
+
+    return jsonify(engine.check_answer(
+        data["operand1"],
+        data["operand2"],
+        data["user_answer"]
+    ))
     "modulus": Modulus()
 }
 
