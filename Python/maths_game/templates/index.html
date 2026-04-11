@@ -12,7 +12,7 @@
           crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway%7CRighteous" rel="stylesheet">
 
-    <!-- Local CSS via Flask static -->
+    <!-- Local CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <title>Love Maths</title>
@@ -26,25 +26,33 @@
 
     <div class="game-area">
 
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+
+        <!-- Round Complete Message -->
+        <p id="round-complete-message" class="round-complete-message"></p>
+
         <!-- Operation Buttons -->
         <div class="controls-area">
-            <button onclick="loadQuestion('addition')" class="btn btn--big btn--green" data-type="addition">
+            <button type="button" onclick="loadQuestion('addition')" class="btn btn--big btn--green" data-type="addition">
                 <i class="fas fa-plus"></i>
             </button>
 
-            <button onclick="loadQuestion('subtract')" class="btn btn--big btn--blue" data-type="subtract">
+            <button type="button" onclick="loadQuestion('subtract')" class="btn btn--big btn--blue" data-type="subtract">
                 <i class="fas fa-minus"></i>
             </button>
 
-            <button onclick="loadQuestion('multiply')" class="btn btn--big btn--orange" data-type="multiply">
+            <button type="button" onclick="loadQuestion('multiply')" class="btn btn--big btn--orange" data-type="multiply">
                 <i class="fas fa-times"></i>
             </button>
 
-            <button onclick="loadQuestion('division')" class="btn btn--big btn--red" data-type="division">
+            <button type="button" onclick="loadQuestion('division')" class="btn btn--big btn--red" data-type="division">
                 <i class="fas fa-divide"></i>
             </button>
 
-            <button onclick="loadQuestion('modulus')" class="btn btn--big btn--purple" data-type="modulus">
+            <button type="button" onclick="loadQuestion('modulus')" class="btn btn--big btn--purple" data-type="modulus">
                 <i class="fas fa-percent"></i>
             </button>
         </div>
@@ -60,8 +68,10 @@
             <input id="answer-box" type="number">
         </div>
 
-        <!-- Submit Button -->
-        <button onclick="checkAnswer()" class="btn btn--gray">Submit Answer</button>
+        <!-- Submit + Next Buttons -->
+        <button type="button" onclick="checkAnswer()" class="btn btn--gray">Submit Answer</button>
+        <button type="button" onclick="nextQuestion()" class="btn btn--gray">Next Question</button>
+
     </div>
 
     <!-- Score Area -->
@@ -70,8 +80,11 @@
         <p class="scores">Incorrect Answers <span id="incorrect">0</span></p>
     </div>
 
-    <!-- Main JS via Flask static -->
+    <!-- Main JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
 
+    <!-- Confetti Library (THIS FIXES YOUR ISSUE) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
 </html>
