@@ -31,9 +31,81 @@ body {
 }
 
 /* ---------------------------------------------------------
-   Buttons
+   Pastel Operation Buttons (Option 3)
 --------------------------------------------------------- */
-.operation-buttons button,
+
+.op-btn {
+    padding: 12px 20px;
+    margin: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 260px;
+    font-weight: bold;
+}
+
+/* Icons */
+.op-btn i {
+    font-size: 20px;
+}
+
+/* Pastel colours */
+.addition {
+    background: #d4f8d4;   /* soft green */
+    color: #1b7a1b;
+}
+
+.subtraction {
+    background: #ffd6d6;   /* soft red */
+    color: #b30000;
+}
+
+.multiplication {
+    background: #e8d6ff;   /* soft purple */
+    color: #5a2ca0;
+}
+
+.division {
+    background: #d6eaff;   /* soft blue */
+    color: #005fa3;
+}
+
+.modulus {
+    background: #fff2cc;   /* soft yellow */
+    color: #a67c00;
+}
+
+/* Hover effects */
+.addition:hover {
+    background: #c4f3c4;
+}
+
+.subtraction:hover {
+    background: #ffc4c4;
+}
+
+.multiplication:hover {
+    background: #e0c8ff;
+}
+
+.division:hover {
+    background: #c4e0ff;
+}
+
+.modulus:hover {
+    background: #ffecb3;
+}
+
+/* ---------------------------------------------------------
+   Submit + Next Buttons (keep original blue style)
+--------------------------------------------------------- */
 #submit-btn,
 #next-btn {
     padding: 12px 20px;
@@ -47,7 +119,6 @@ body {
     transition: 0.2s;
 }
 
-.operation-buttons button:hover,
 #submit-btn:hover,
 #next-btn:hover {
     background: #005fcc;

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maths Game</title>
-<!-- Font-awesome-->
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -23,25 +25,27 @@
 
         <!-- Operation Buttons -->
         <div class="operation-buttons">
-            <button onclick="startGame('addition')">
-    <i class="fa-solid fa-plus"></i> Addition
-</button>
 
-<button onclick="startGame('subtract')">
-    <i class="fa-solid fa-minus"></i> Subtraction
-</button>
+            <button class="op-btn addition" onclick="startGame('addition')">
+                <i class="fa-solid fa-plus"></i> Addition
+            </button>
 
-<button onclick="startGame('multiply')">
-    <i class="fa-solid fa-xmark"></i> Multiplication
-</button>
+            <button class="op-btn subtraction" onclick="startGame('subtract')">
+                <i class="fa-solid fa-minus"></i> Subtraction
+            </button>
 
-<button onclick="startGame('division')">
-    <i class="fa-solid fa-divide"></i> Division
-</button>
+            <button class="op-btn multiplication" onclick="startGame('multiply')">
+                <i class="fa-solid fa-xmark"></i> Multiplication
+            </button>
 
-<button onclick="startGame('modulus')">
-    <i class="fa-solid fa-percent"></i> Modulus
-</button>
+            <button class="op-btn division" onclick="startGame('division')">
+                <i class="fa-solid fa-divide"></i> Division
+            </button>
+
+            <button class="op-btn modulus" onclick="startGame('modulus')">
+                <i class="fa-solid fa-percent"></i> Modulus
+            </button>
+
         </div>
 
         <!-- Scoreboard -->
@@ -56,6 +60,7 @@
             <span id="operator"></span>
             <span id="operand2"></span>
             <span>=</span>
+
             <input id="answer-box" type="number" autocomplete="off">
 
             <button id="submit-btn" onclick="checkAnswer()">Submit</button>
