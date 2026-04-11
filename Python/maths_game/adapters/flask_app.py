@@ -14,16 +14,15 @@ from ..core.operations.division import Division
 from ..core.operations.modulus import Modulus
 
 # ---------------------------------------------------------
-# Locate the templates folder one level above /adapters/
+# Paths for templates and static files
 # ---------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # maths_game/
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
-
-# ---------------------------------------------------------
-# Create Flask app and print static folder path
-# ---------------------------------------------------------
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
+# ---------------------------------------------------------
+# Create Flask app
+# ---------------------------------------------------------
 app = Flask(
     __name__,
     template_folder=TEMPLATE_DIR,
@@ -33,7 +32,7 @@ app = Flask(
 print("STATIC FOLDER:", app.static_folder)
 
 # ---------------------------------------------------------
-# Map operation names to classes
+# Operation registry
 # ---------------------------------------------------------
 operations = {
     "addition": Addition(),
@@ -44,31 +43,30 @@ operations = {
 }
 
 # ---------------------------------------------------------
-# 1. Serve the homepage
+# Routes
 # ---------------------------------------------------------
 @app.get("/")
 def index():
+    """Serve the homepage."""
     return render_template("index.html")
 
-# ---------------------------------------------------------
-# 2. Get a new question
-# ---------------------------------------------------------
+
 @app.get("/question/<operation>")
 def question(operation):
+    """Generate a new question for the given operation."""
     if operation not in operations:
         return jsonify({"error": "Invalid operation"}), 400
 
     engine = GameEngine(operations[operation])
     return jsonify(engine.new_question())
 
-# ---------------------------------------------------------
-# 3. Check the user's answer
-# ---------------------------------------------------------
+
 @app.post("/check")
 def check():
+    """Check the user's answer."""
     data = request.json
-
     operation = data.get("operation")
+
     if operation not in operations:
         return jsonify({"error": "Invalid operation"}), 400
 
@@ -79,3 +77,10 @@ def check():
         data["operand2"],
         data["user_answer"]
     ))
+
+
+# ---------------------------------------------------------
+# Run the Flask development server
+# ---------------------------------------------------------
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -25,36 +25,46 @@
     </h1>
 
     <div class="game-area">
+
+        <!-- Operation Buttons -->
         <div class="controls-area">
-            <button data-type="addition" class="btn btn--big btn--green">
+            <button onclick="loadQuestion('addition')" class="btn btn--big btn--green" data-type="addition">
                 <i class="fas fa-plus"></i>
             </button>
-            <button data-type="subtract" class="btn btn--big btn--blue">
+
+            <button onclick="loadQuestion('subtract')" class="btn btn--big btn--blue" data-type="subtract">
                 <i class="fas fa-minus"></i>
             </button>
-            <button data-type="multiply" class="btn btn--big btn--orange">
+
+            <button onclick="loadQuestion('multiply')" class="btn btn--big btn--orange" data-type="multiply">
                 <i class="fas fa-times"></i>
             </button>
-            <button data-type="division" class="btn btn--big btn--red">
+
+            <button onclick="loadQuestion('division')" class="btn btn--big btn--red" data-type="division">
                 <i class="fas fa-divide"></i>
             </button>
-            <button data-type="modulus" class="btn btn--big btn--purple">
+
+            <button onclick="loadQuestion('modulus')" class="btn btn--big btn--purple" data-type="modulus">
                 <i class="fas fa-percent"></i>
             </button>
         </div>
 
+        <!-- Question Display -->
         <div class="question-area">
             <span id="operand1">0</span>
             <span id="operator">?</span>
             <span id="operand2">0</span>
             <span>=</span>
+
             <p class="answer-message">Enter Answer:</p>
             <input id="answer-box" type="number">
         </div>
 
-        <button data-type="submit" class="btn btn--gray">Submit Answer</button>
+        <!-- Submit Button -->
+        <button onclick="checkAnswer()" class="btn btn--gray">Submit Answer</button>
     </div>
 
+    <!-- Score Area -->
     <div class="score-area">
         <p class="scores">Correct Answers <span id="score">0</span></p>
         <p class="scores">Incorrect Answers <span id="incorrect">0</span></p>
