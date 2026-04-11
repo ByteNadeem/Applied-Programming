@@ -3,18 +3,31 @@ let progress = 0;
 let step = 10; // 10 questions = 100%
 let totalQuestions = 10;
 
+let correctScore = 0;
+let incorrectScore = 0;
+
 // ---------------------------------------------------------
 // Start a new game
 // ---------------------------------------------------------
 function startGame(operation) {
     currentOperation = operation;
     progress = 0;
+    correctScore = 0;
+    incorrectScore = 0;
 
+    // Reset UI
     document.getElementById("progress-bar").style.width = "0%";
     document.getElementById("progress-container").classList.remove("hidden");
     document.getElementById("round-complete").classList.add("hidden");
 
     document.getElementById("question-box").classList.remove("hidden");
+    document.getElementById("scoreboard").classList.remove("hidden");
+
+    document.getElementById("correct-score").textContent = correctScore;
+    document.getElementById("incorrect-score").textContent = incorrectScore;
+
+    document.getElementById("next-btn").classList.add("hidden");
+    document.getElementById("submit-btn").disabled = false;
 
     loadQuestion();
 }
@@ -32,6 +45,9 @@ function loadQuestion() {
 
             document.getElementById("answer-box").value = "";
             document.getElementById("answer-box").focus();
+
+            document.getElementById("next-btn").classList.add("hidden");
+            document.getElementById("submit-btn").disabled = false;
         })
         .catch(() => alert("Error loading question."));
 }
@@ -62,12 +78,31 @@ function checkAnswer() {
         .then(response => response.json())
         .then(data => {
             if (data.is_correct) {
-                updateProgress();
+                correctScore++;
+                document.getElementById("correct-score").textContent = correctScore;
             } else {
+                incorrectScore++;
+                document.getElementById("incorrect-score").textContent = incorrectScore;
                 alert(`Incorrect! Correct answer: ${data.correct_answer}`);
             }
+
+            updateProgress();
+
+            // After answering, disable submit and show Next button
+            document.getElementById("submit-btn").disabled = true;
+            document.getElementById("next-btn").classList.remove("hidden");
         })
         .catch(() => alert("Something went wrong while checking your answer."));
+}
+
+// ---------------------------------------------------------
+// Next question handler
+// ---------------------------------------------------------
+function nextQuestion() {
+    if (progress >= 100) {
+        return; // round already complete
+    }
+    loadQuestion();
 }
 
 // ---------------------------------------------------------
@@ -76,12 +111,14 @@ function checkAnswer() {
 function updateProgress() {
     progress += step;
 
+    if (progress > 100) {
+        progress = 100;
+    }
+
     document.getElementById("progress-bar").style.width = progress + "%";
 
     if (progress >= 100) {
         roundComplete();
-    } else {
-        loadQuestion();
     }
 }
 
@@ -97,6 +134,9 @@ function roundComplete() {
         spread: 80,
         origin: { y: 0.6 }
     });
+
+    document.getElementById("next-btn").classList.add("hidden");
+    document.getElementById("submit-btn").disabled = true;
 }
 
 // ---------------------------------------------------------
@@ -104,6 +144,8 @@ function roundComplete() {
 // ---------------------------------------------------------
 document.getElementById("answer-box").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        checkAnswer();
+        if (!document.getElementById("submit-btn").disabled) {
+            checkAnswer();
+        }
     }
 });

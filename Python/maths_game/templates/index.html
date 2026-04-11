@@ -13,6 +13,11 @@
 
     <div class="container">
 
+        <!-- Love Maths Logo -->
+        <img src="{{ url_for('static', filename='images/love-maths-logo.png') }}"
+             alt="Love Maths Logo"
+             class="logo">
+
         <h1>Maths Game</h1>
 
         <!-- Operation Buttons -->
@@ -24,6 +29,12 @@
             <button onclick="startGame('modulus')">Modulus</button>
         </div>
 
+        <!-- Scoreboard -->
+        <div id="scoreboard" class="scoreboard hidden">
+            <span>Correct: <span id="correct-score">0</span></span>
+            <span>Incorrect: <span id="incorrect-score">0</span></span>
+        </div>
+
         <!-- Question Display -->
         <div id="question-box" class="question-box hidden">
             <span id="operand1"></span>
@@ -31,7 +42,9 @@
             <span id="operand2"></span>
             <span>=</span>
             <input id="answer-box" type="number" autocomplete="off">
+
             <button id="submit-btn" onclick="checkAnswer()">Submit</button>
+            <button id="next-btn" class="hidden" onclick="nextQuestion()">Next Question</button>
         </div>
 
         <!-- Progress Bar -->

@@ -1,14 +1,13 @@
+import random
+
 class Subtraction:
     def generate(self):
-        """Generate two numbers for subtraction (a - b, non-negative)."""
-        a = 8
-        b = 3
+        a = random.randint(5, 20)
+        b = random.randint(1, a)
         return a, b
 
     def calculate(self, a, b):
-        """Return the result of a - b."""
         return a - b
 
     def symbol(self):
-        """Return the symbol for subtraction."""
         return "-"

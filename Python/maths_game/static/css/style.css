@@ -23,10 +23,19 @@ body {
 }
 
 /* ---------------------------------------------------------
+   Logo
+--------------------------------------------------------- */
+.logo {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+/* ---------------------------------------------------------
    Buttons
 --------------------------------------------------------- */
 .operation-buttons button,
-#submit-btn {
+#submit-btn,
+#next-btn {
     padding: 12px 20px;
     margin: 8px;
     font-size: 16px;
@@ -39,8 +48,20 @@ body {
 }
 
 .operation-buttons button:hover,
-#submit-btn:hover {
+#submit-btn:hover,
+#next-btn:hover {
     background: #005fcc;
+}
+
+/* ---------------------------------------------------------
+   Scoreboard
+--------------------------------------------------------- */
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 /* ---------------------------------------------------------

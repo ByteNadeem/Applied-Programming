@@ -1,14 +1,13 @@
+import random
+
 class Division:
     def generate(self):
-        """Generate two numbers for division."""
-        return 20, 5  # You can replace with random logic later
+        b = random.randint(1, 10)
+        a = b * random.randint(1, 10)
+        return a, b
 
     def calculate(self, a, b):
-        """Return the result of integer division a // b."""
-        if b == 0:
-            return None  # Prevent ZeroDivisionError
-        return a // b   # Integer division for consistency
+        return a // b
 
     def symbol(self):
-        """Return the symbol for division."""
         return "÷"

@@ -1,14 +1,13 @@
+import random
+
 class Modulus:
     def generate(self):
-        """Generate two numbers for modulus."""
-        return 17, 5  # You can replace with random logic later
+        b = random.randint(1, 10)
+        a = random.randint(1, 50)
+        return a, b
 
     def calculate(self, a, b):
-        """Return the result of a % b."""
-        if b == 0:
-            return None  # Prevent ZeroDivisionError
         return a % b
 
     def symbol(self):
-        """Return the symbol for modulus."""
         return "%"
