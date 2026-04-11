@@ -1,292 +1,102 @@
-/* -----------------------------------
-   Global Style
------------------------------------ */
+/* ---------------------------------------------------------
+   General Page Styling
+--------------------------------------------------------- */
 body {
-    background-color: white;
-    font-family: "Raleway", sans-serif;
-    color: #445361;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
     text-align: center;
-}
-
-/* -----------------------------------
-   Heading
------------------------------------ */
-.heading {
-    text-align: center;
-    font-size: 2.5rem;
-}
-
-.logo {
-    height: 40px;
-    padding-right: 5px;
-}
-
-/* -----------------------------------
-   Game Layout
------------------------------------ */
-.game-area {
-    background-color: #E6ECF0;
-    box-sizing: border-box;
-    width: 85%;
-    max-width: 830px;
-    margin: 0 auto;
-
-    /* Prevent overlap */
-    min-height: 75vh;
-    height: auto;
-    padding: 1% 1% 120px 1%;
-}
-
-/* Progress Bar */
-.progress-container {
-    width: 80%;
-    height: 20px;
-    background-color: #d0d7dd;
-    border-radius: 10px;
-    margin: 20px auto;
-    overflow: hidden;
-}
-
-#progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #4caf50;
-    transition: width 0.4s ease;
-}
-
-/* Question Area */
-.question-area {
-    width: 50%;
-    font-size: 2rem;
-    margin: auto;
-    padding: 30px 0;
-}
-
-.question-area span {
-    padding: 0 15px;
-}
-
-/* Score Area */
-.score-area {
-    margin: 10px auto;
-    width: 60%;
-    font-size: 1.2rem;
-}
-
-.scores {
-    display: inline-block;
+    width: 90%;
+    max-width: 500px;
+    background: white;
     padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
 }
 
-/* Controls Area */
-.controls-area {
-    width: 85%;
-    margin: 30px auto;
+/* ---------------------------------------------------------
+   Buttons
+--------------------------------------------------------- */
+.operation-buttons button,
+#submit-btn {
+    padding: 12px 20px;
+    margin: 8px;
+    font-size: 16px;
+    border: none;
+    background: #0078ff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-/* Answer Box */
-.answer-message {
-    display: none;
-    font-size: 1rem;
+.operation-buttons button:hover,
+#submit-btn:hover {
+    background: #005fcc;
+}
+
+/* ---------------------------------------------------------
+   Question Box
+--------------------------------------------------------- */
+.question-box {
+    margin-top: 20px;
+    font-size: 24px;
 }
 
 #answer-box {
-    border: none;
-    color: #445361;
-    display: inline-block;
-    height: 40px;
     width: 80px;
-    font-size: 1.2rem;
+    padding: 8px;
+    font-size: 20px;
+    text-align: center;
+    margin-left: 10px;
 }
 
-/* Score Colours */
-#score {
-    color: green;
+/* ---------------------------------------------------------
+   Progress Bar
+--------------------------------------------------------- */
+.progress-container {
+    width: 100%;
+    background: #ddd;
+    height: 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #28a745;
+    transition: width 0.4s ease;
+}
+
+/* ---------------------------------------------------------
+   Round Complete Message
+--------------------------------------------------------- */
+.round-complete {
+    margin-top: 25px;
+    font-size: 28px;
     font-weight: bold;
+    color: #ff9800;
+    animation: pop 0.6s ease-out;
 }
 
-#incorrect {
-    color: red;
-    font-weight: bold;
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
-/* -----------------------------------
-   Buttons
------------------------------------ */
-.btn {
-    width: 220px;
-    height: 60px;
-    font-family: "Raleway", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: white;
-}
-
-.btn:focus {
-    outline: none;
-}
-
-.btn--big {
-    padding-top: 10px;
-    border-radius: 50%;
-    background-color: white;
-    border: 10px solid;
-    width: 100px;
-    height: 100px;
-    font-size: 3.2rem;
-    margin: 0 30px;
-    transition: all 0.5s;
-}
-
-.btn--big::after {
-    content: attr(data-type);
-    font-size: 1rem;
-    color: #445361;
-    position: relative;
-    left: -0.5em;
-}
-
-/* Button Colours */
-.btn--blue { border-color: blue; color: blue; }
-.btn--blue:hover, .btn--blue:active { background-color: darkblue; color: white; }
-
-.btn--orange { border-color: orange; color: orange; }
-.btn--orange:hover, .btn--orange:active { background-color: darkorange; color: white; }
-
-.btn--red { border-color: red; color: red; }
-.btn--red:hover, .btn--red:active { background-color: darkred; color: white; }
-
-.btn--green { border-color: green; color: green; }
-.btn--green:hover, .btn--green:active { background-color: darkgreen; color: white; }
-
-.btn--purple { border-color: purple; color: purple; }
-.btn--purple:hover, .btn--purple:active { background-color: rebeccapurple; color: white; }
-
-.btn--gray {
-    margin-top: 20px;
-    background-color: #445361;
-    border: 1px transparent;
-    border-radius: 20px;
-}
-
-.btn--gray:hover,
-.btn--gray:active {
-    background-color: #0d1013;
-}
-
-/* -----------------------------------
-   Animations
------------------------------------ */
-.correct-flash {
-    animation: flashGreen 0.4s;
-}
-
-@keyframes flashGreen {
-    0% { background-color: #c8f7c5; }
-    100% { background-color: transparent; }
-}
-
-.shake {
-    animation: shakeWrong 0.4s;
-}
-
-@keyframes shakeWrong {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-}
-
-/* -----------------------------------
-   Media Queries
------------------------------------ */
-@media (max-width: 414px) {
-
-    .controls-area {
-        width: 100%;
-    }
-
-    .btn--big {
-        margin: 0 10px;
-        padding: 5px;
-        border: 5px solid;
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-    }
-
-    .btn--big::after {
-        font-size: 0.6rem;
-        left: -0.7rem;
-    }
-
-    .question-area {
-        padding: 10% 0;
-        width: 100%;
-    }
-
-    .question-area span {
-        padding: 0;
-    }
-
-    .answer-message {
-        display: block;
-    }
-
-    #answer-box {
-        display: block;
-        margin: 0 auto;
-    }
-
-    .btn--gray {
-        margin-top: 0;
-    }
-
-    .score-area {
-        width: 100%;
-    }
-
-    .scores {
-        margin: 0.5em auto;
-        display: block;
-        padding: 5px;
-    }
-
-    .heading {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 320px) {
-
-    .game-area {
-        min-height: 70vh;
-    }
-
-    .controls-area {
-        width: 75%;
-        margin: 10px auto;
-    }
-
-    .btn--big {
-        margin: 10px 10px;
-    }
-
-    .question-area {
-        padding: 10px 0;
-    }
-}
-.round-complete-message {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #2e7d32;
-    margin-top: 15px;
+/* ---------------------------------------------------------
+   Utility
+--------------------------------------------------------- */
+.hidden {
     display: none;
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; transform: scale(0.9); }
-    100% { opacity: 1; transform: scale(1); }
 }

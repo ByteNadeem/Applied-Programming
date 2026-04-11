@@ -1,90 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths Game</title>
 
-    <!-- Font Awesome and Google Fonts -->
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-          crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Raleway%7CRighteous" rel="stylesheet">
-
-    <!-- Local CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-    <title>Love Maths</title>
 </head>
 
 <body>
-    <h1 class="heading">
-        <img class="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
-        Love Maths
-    </h1>
 
-    <div class="game-area">
+    <div class="container">
 
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div id="progress-bar"></div>
-        </div>
-
-        <!-- Round Complete Message -->
-        <p id="round-complete-message" class="round-complete-message"></p>
+        <h1>Maths Game</h1>
 
         <!-- Operation Buttons -->
-        <div class="controls-area">
-            <button type="button" onclick="loadQuestion('addition')" class="btn btn--big btn--green" data-type="addition">
-                <i class="fas fa-plus"></i>
-            </button>
-
-            <button type="button" onclick="loadQuestion('subtract')" class="btn btn--big btn--blue" data-type="subtract">
-                <i class="fas fa-minus"></i>
-            </button>
-
-            <button type="button" onclick="loadQuestion('multiply')" class="btn btn--big btn--orange" data-type="multiply">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <button type="button" onclick="loadQuestion('division')" class="btn btn--big btn--red" data-type="division">
-                <i class="fas fa-divide"></i>
-            </button>
-
-            <button type="button" onclick="loadQuestion('modulus')" class="btn btn--big btn--purple" data-type="modulus">
-                <i class="fas fa-percent"></i>
-            </button>
+        <div class="operation-buttons">
+            <button onclick="startGame('addition')">Addition</button>
+            <button onclick="startGame('subtract')">Subtraction</button>
+            <button onclick="startGame('multiply')">Multiplication</button>
+            <button onclick="startGame('division')">Division</button>
+            <button onclick="startGame('modulus')">Modulus</button>
         </div>
 
         <!-- Question Display -->
-        <div class="question-area">
-            <span id="operand1">0</span>
-            <span id="operator">?</span>
-            <span id="operand2">0</span>
+        <div id="question-box" class="question-box hidden">
+            <span id="operand1"></span>
+            <span id="operator"></span>
+            <span id="operand2"></span>
             <span>=</span>
-
-            <p class="answer-message">Enter Answer:</p>
-            <input id="answer-box" type="number">
+            <input id="answer-box" type="number" autocomplete="off">
+            <button id="submit-btn" onclick="checkAnswer()">Submit</button>
         </div>
 
-        <!-- Submit + Next Buttons -->
-        <button type="button" onclick="checkAnswer()" class="btn btn--gray">Submit Answer</button>
-        <button type="button" onclick="nextQuestion()" class="btn btn--gray">Next Question</button>
+        <!-- Progress Bar -->
+        <div class="progress-container hidden" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Round Complete Message -->
+        <div id="round-complete" class="round-complete hidden">
+            🎉 Round Complete! 🎉
+        </div>
 
     </div>
 
-    <!-- Score Area -->
-    <div class="score-area">
-        <p class="scores">Correct Answers <span id="score">0</span></p>
-        <p class="scores">Incorrect Answers <span id="incorrect">0</span></p>
-    </div>
-
-    <!-- Main JS -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-    <!-- Confetti Library (THIS FIXES YOUR ISSUE) -->
+    <!-- Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 </html>
